@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Logo</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fafafa;
+        }
+
+        .logo-container {
+            width: 400px;
+            height: 400px;
+            /* Adds a subtle drop shadow to match the uploaded image's depth */
+            filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.03));
+        }
+    </style>
+</head>
+<body>
+
+    <div class="logo-container">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            
+            <defs>
+                <!-- This clip path allows us to draw the bottom-right part of the orange curve 
+                     OVER the blue curve, completing the "impossible triangle" loop effect -->
+                <clipPath id="right-half">
+                    <rect x="50" y="0" width="50" height="100" />
+                </clipPath>
+            </defs>
+
+            <!-- Global styling for the strokes -->
+            <g fill="none" stroke-width="11" stroke-linecap="round">
+                
+                <!-- 1. ORANGE CURVE (Base layer) -->
+                <!-- Starts top-left, curves down to bottom-right -->
+                <path d="M 23,20 C 45,20 65,35 72,65" stroke="#FA8121" />
+
+                <!-- 2. GREEN CURVE -->
+                <!-- Starts bottom-left, curves up to top-middle. Covers Orange on top-left -->
+                <path d="M 23,80 C 16,55 25,35 40,29" stroke="#AEE124" />
+
+                <!-- 3. BLUE CURVE -->
+                <!-- Starts middle-left, curves to middle-right. Covers Green on bottom-left -->
+                <path d="M 23,63 C 45,78 65,75 86,58" stroke="#93E1F4" />
+
+                <!-- 4. ORANGE CURVE (Top layer loop) -->
+                <!-- We draw the orange curve again, but ONLY reveal the right side using the clip-path. 
+                     This makes the orange curve cover the blue curve on the bottom right. -->
+                <path d="M 23,20 C 45,20 65,35 72,65" stroke="#FA8121" clip-path="url(#right-half)" />
+                
+            </g>
+
+        </svg>
+    </div>
+
+</body>
+</html>
