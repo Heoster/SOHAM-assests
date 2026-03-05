@@ -3,64 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOHAM Logo</title>
+    <title>File Navigator</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #fafafa;
-        }
-
-        .logo-container {
-            width: 400px;
-            height: 400px;
-            /* Adds a subtle drop shadow to match the uploaded image's depth */
-            filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.03));
-        }
+        body { font-family: sans-serif; padding: 20px; }
+        .file-item { margin: 10px 0; padding: 10px; border: 1px solid #ccc; border-radius: 5px; display: flex; justify-content: space-between; align-items: center; max-width: 500px; }
+        a { text-decoration: none; color: #007BFF; font-weight: bold; }
+        button { padding: 5px 10px; cursor: pointer; }
     </style>
 </head>
 <body>
-
-    <div class="logo-container">
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            
-            <defs>
-                <!-- This clip path allows us to draw the bottom-right part of the orange curve 
-                     OVER the blue curve, completing the "impossible triangle" loop effect -->
-                <clipPath id="right-half">
-                    <rect x="50" y="0" width="50" height="100" />
-                </clipPath>
-            </defs>
-
-            <!-- Global styling for the strokes -->
-            <g fill="none" stroke-width="11" stroke-linecap="round">
-                
-                <!-- 1. ORANGE CURVE (Base layer) -->
-                <!-- Starts top-left, curves down to bottom-right -->
-                <path d="M 23,20 C 45,20 65,35 72,65" stroke="#FA8121" />
-
-                <!-- 2. GREEN CURVE -->
-                <!-- Starts bottom-left, curves up to top-middle. Covers Orange on top-left -->
-                <path d="M 23,80 C 16,55 25,35 40,29" stroke="#AEE124" />
-
-                <!-- 3. BLUE CURVE -->
-                <!-- Starts middle-left, curves to middle-right. Covers Green on bottom-left -->
-                <path d="M 23,63 C 45,78 65,75 86,58" stroke="#93E1F4" />
-
-                <!-- 4. ORANGE CURVE (Top layer loop) -->
-                <!-- We draw the orange curve again, but ONLY reveal the right side using the clip-path. 
-                     This makes the orange curve cover the blue curve on the bottom right. -->
-                <path d="M 23,20 C 45,20 65,35 72,65" stroke="#FA8121" clip-path="url(#right-half)" />
-                
-            </g>
-
-        </svg>
+    <h1>Project Files</h1>
+    
+    <!-- File 1 -->
+    <div class="file-item">
+        <span>ANIMATION.html</span>
+        <button onclick="copyLink('ANIMATION.html')">Copy Link</button>
+        <a href="ANIMATION.html" target="_blank">Open</a>
     </div>
 
+    <!-- File 2 -->
+    <div class="file-item">
+        <span>FINALSOHAM.png</span>
+        <button onclick="copyLink('FINALSOHAM.png')">Copy Link</button>
+        <a href="FINALSOHAM.png" target="_blank">Open</a>
+    </div>
+
+    <!-- File 3 -->
+    <div class="file-item">
+        <span>index.html</span>
+        <button onclick="copyLink('index.html')">Copy Link</button>
+        <a href="index.html" target="_blank">Open</a>
+    </div>
+
+    <!-- File 4 -->
+    <div class="file-item">
+        <span>introducing-animation.html</span>
+        <button onclick="copyLink('introducing-animation.html')">Copy Link</button>
+        <a href="introducing-animation.html" target="_blank">Open</a>
+    </div>
+
+    <script>
+        function copyLink(filename) {
+            // Creates an absolute path based on current location
+            const link = window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/')) + '/' + filename;
+            navigator.clipboard.writeText(link).then(() => {
+                alert('Copied: ' + filename);
+            });
+        }
+    </script>
 </body>
 </html>
-
