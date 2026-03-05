@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOHAM Loading Animation</title>
+    <style>
+        /* Base page styling to center the loader */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fcfcfc; /* Slight off-white to match image background */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .loader-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* SVG Logo Styling & Animation */
+        .soham-logo {
+            width: 120px;
+            height: 120px;
+            /* Slow rotation for the whole container */
+            animation: spin 8s linear infinite, pulse 3s ease-in-out infinite;
+        }
+
+        .logo-path {
+            fill: none;
+            stroke-width: 14;
+            stroke-linecap: round;
+            /* Set dash array to roughly the length of the paths */
+            stroke-dasharray: 130; 
+            /* Animate the offset to create drawing effect */
+            animation: drawLine 2s ease-in-out infinite;
+        }
+
+        /* Accurate colors from the provided image */
+        .path-orange {
+            stroke: #FF841B;
+            animation-delay: 0s;
+        }
+
+        .path-blue {
+            stroke: #90E0EF;
+            animation-delay: -0.66s; /* Offset animations to create chasing effect */
+        }
+
+        .path-green {
+            stroke: #B5E32D;
+            animation-delay: -1.33s;
+        }
+
+        /* Text Styling */
+        .company-name {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 4px;
+            color: #333;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .loading-text {
+            font-size: 14px;
+            font-weight: 500;
+            color: #888;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: textPulse 1.5s ease-in-out infinite;
+        }
+
+        /* Keyframes */
+        @keyframes drawLine {
+            0% {
+                stroke-dashoffset: 130; /* Start invisible */
+            }
+            50% {
+                stroke-dashoffset: 0;   /* Fully drawn */
+            }
+            100% {
+                stroke-dashoffset: -130; /* Exit out the other side */
+            }
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.05) rotate(180deg); }
+        }
+
+        @keyframes textPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="loader-container">
+        <!-- Recreated SVG Logo -->
+        <svg class="soham-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(50, 50) scale(0.9) translate(-50, -50)">
+                <!-- Orange Top Right Curve -->
+                <path class="logo-path path-orange" d="M 30,25 C 60,15 85,40 85,75" />
+                
+                <!-- Blue Bottom Curve -->
+                <!-- Drawn after orange to overlap correctly at bottom right -->
+                <path class="logo-path path-blue" d="M 20,65 C 40,95 85,90 95,60" />
+                
+                <!-- Green Left Curve -->
+                <!-- Drawn last to overlap blue at bottom left -->
+                <path class="logo-path path-green" d="M 25,85 C 10,50 30,20 60,30" />
+            </g>
+        </svg>
+
+        <div style="text-align: center;">
+            <h1 class="company-name">Soham</h1>
+            <div class="loading-text">Loading...</div>
+        </div>
+    </div>
+
+</body>
+</html>

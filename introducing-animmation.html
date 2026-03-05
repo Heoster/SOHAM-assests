@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOHAM - Logo Introduction</title>
+    <style>
+        /* Base Styling */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        .intro-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+        }
+
+        /* --- LOGO ANIMATIONS --- */
+        .soham-logo {
+            width: 140px;
+            height: 140px;
+            /* Logo rotates into place and slightly bounces */
+            transform-origin: center;
+            animation: logoSettle 2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        .logo-path {
+            fill: none;
+            stroke-width: 14;
+            stroke-linecap: round;
+            /* Prepare lines for drawing */
+            stroke-dasharray: 130;
+            stroke-dashoffset: 130; /* Starts hidden */
+        }
+
+        /* Staggered drawing of the three lines */
+        .path-orange {
+            stroke: #FF841B;
+            animation: drawLine 1.5s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards;
+        }
+
+        .path-blue {
+            stroke: #90E0EF;
+            animation: drawLine 1.5s cubic-bezier(0.25, 1, 0.5, 1) 0.6s forwards;
+        }
+
+        .path-green {
+            stroke: #B5E32D;
+            animation: drawLine 1.5s cubic-bezier(0.25, 1, 0.5, 1) 1.0s forwards;
+        }
+
+        /* --- TEXT ANIMATIONS --- */
+        .text-container {
+            text-align: center;
+            position: relative;
+        }
+
+        .company-name {
+            font-size: 36px;
+            font-weight: 900;
+            color: #222;
+            margin: 0;
+            text-transform: uppercase;
+            opacity: 0; /* Starts hidden */
+            /* Text fades in, slides up, and tracks inwards */
+            animation: textReveal 1.5s cubic-bezier(0.21, 0.85, 0.35, 1) 1.5s forwards;
+        }
+
+        .tagline {
+            font-size: 14px;
+            color: #888;
+            font-weight: 400;
+            letter-spacing: 4px;
+            margin-top: 5px;
+            text-transform: uppercase;
+            opacity: 0;
+            /* Fades in last */
+            animation: fadeIn 1.2s ease-in-out 2.5s forwards;
+        }
+
+        /* --- KEYFRAMES --- */
+
+        /* Draws the lines smoothly */
+        @keyframes drawLine {
+            0% {
+                stroke-dashoffset: 130;
+            }
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        /* Rotates and pops the whole SVG container */
+        @keyframes logoSettle {
+            0% {
+                transform: scale(0.5) rotate(-90deg);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        /* Slides text up and smoothly brings letter spacing together */
+        @keyframes textReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+                letter-spacing: 15px; /* Starts wide */
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+                letter-spacing: 6px;  /* Ends tight and elegant */
+            }
+        }
+
+        /* Simple fade in for the tagline */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="intro-container">
+        <!-- Animated SVG Logo -->
+        <svg class="soham-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(50, 50) scale(0.9) translate(-50, -50)">
+                <path class="logo-path path-orange" d="M 30,25 C 60,15 85,40 85,75" />
+                <path class="logo-path path-blue" d="M 20,65 C 40,95 85,90 95,60" />
+                <path class="logo-path path-green" d="M 25,85 C 10,50 30,20 60,30" />
+            </g>
+        </svg>
+
+        <div class="text-container">
+            <h1 class="company-name">Soham</h1>
+            <!-- Optional Tagline to make the intro look complete -->
+            <div class="tagline">Welcome</div> 
+        </div>
+    </div>
+
+</body>
+</html>
