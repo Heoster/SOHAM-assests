@@ -1,4 +1,4 @@
-﻿# SOHAM-assests
+﻿# SOHAM-assest
 ![WELCOME](https://heoster.github.io/SOHAM-assests/introducing-animation.html)
 
 ![ANIMATION](https://heoster.github.io/SOHAM-assests/ANIMATION.html)
